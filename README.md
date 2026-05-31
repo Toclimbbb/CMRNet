@@ -5,7 +5,7 @@ Welcome to the official repository for **CMRNet**.
 ## 📢 Update
 **[Under Review]** The manuscript is currently undergoing the peer-review process. 
 
-To comply with double-blind review policies and protect intellectual property prior to publication, the source code, pre-trained weights, and the **SeaRGBT-Tiny dataset** are temporarily withheld.
+To comply with double-blind review policies and protect intellectual property prior to publication, the source code and the **SeaRGBT-Tiny dataset** are temporarily withheld.
 
 **We commit to making the complete training pipeline, inference code, and dataset fully public right here immediately upon the acceptance of the paper.**
 
