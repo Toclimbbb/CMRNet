@@ -29,7 +29,6 @@ Experiments on SeaRGBT-Tiny, MSRS, FLIR, and LLVIP show that our method achieves
 ---
 
 ## 📈 Accuracy-Efficiency Trade-off
-*(Please upload your Fig. 2 as an image named `tradeoff.png` to the repository, and it will be displayed here)*
 
 <details open>
 <summary>Click to view the performance comparison</summary>
@@ -49,7 +48,6 @@ Experiments on SeaRGBT-Tiny, MSRS, FLIR, and LLVIP show that our method achieves
 | **FLIR** | CMRNet (Ours) | **40.3** | 3.60 |
 | **LLVIP** | CMRNet (Ours) | **61.9** | 3.60 |
 
-*(Please wait for the full update after acceptance for detailed quantitative and qualitative results.)*
 
 ---
 *Stay tuned for updates!*
