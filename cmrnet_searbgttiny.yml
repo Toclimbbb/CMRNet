@@ -3,9 +3,7 @@ task: detection
 evaluator:
   type: CocoEvaluator
   iou_types: ['bbox', ]
-
 num_classes: 7
-remap_mscoco_category: False
 
 # ==================== Dataset Configuration ====================
 train_dataloader: 
@@ -27,8 +25,6 @@ train_dataloader:
         - {type: RandomHorizontalFlip}
         - {type: Resize, size: [640, 640]}
         - {type: SanitizeBoundingBoxes, min_size: 1}
-        - {type: ConvertPILImage, dtype: 'float32', scale: True}
-        - {type: ModalStack}
         - {type: ConvertBoxes, fmt: 'cxcywh', normalize: True}
   shuffle: True
   num_workers: 4
@@ -41,16 +37,15 @@ val_dataloader:
   type: DataLoader
   dataset: 
     type: DualModalityCocoDetection
-    img_folder_rgb: ./datasets/SeaRGBT-Tiny/images/test/RGB
-    img_folder_ir: ./datasets/SeaRGBT-Tiny/images/test/IR
-    ann_file: ./datasets/SeaRGBT-Tiny/annotations/test.json
+    # img_folder_rgb: ./datasets/SeaRGBT-Tiny/images/test/RGB
+    img_folder_rgb: ./datasets/SeaRGBT-Tiny/images/val/RGB
+    # img_folder_ir: ./datasets/SeaRGBT-Tiny/images/test/IR
+    img_folder_ir: ./datasets/SeaRGBT-Tiny/images/val/IR
+    # ann_file: ./datasets/SeaRGBT-Tiny/annotations/test.json
+    ann_file: ./datasets/SeaRGBT-Tiny/annotations/val.json
     return_masks: False
     transforms:
       type: Compose
-      ops:
-        - {type: Resize, size: [640, 640]}
-        - {type: ConvertPILImage, dtype: 'float32', scale: True}
-        - {type: ModalStack}
   shuffle: False
   num_workers: 4
   drop_last: False
@@ -65,9 +60,7 @@ __include__: [
   '../base/deim.yml'
 ]
 
-print_freq: 20
 output_dir: ./outputs/CMRNet_SeaRGBT-Tiny
-checkpoint_freq: 12
 model: CMRNet
 
 optimizer:
