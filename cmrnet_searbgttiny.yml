@@ -93,46 +93,35 @@ lr_gamma: 1.0
 ch: 6  # RGB-T 6-channel input
 
 backbone:
-  # [from, module, args]
-  # --- Modality Selection ---
   - [-1, IdentityInput, []]                                           # 0
   - [-1, ModalitySelector, [1]]                                       # 1 (RGB)
   - [-2, ModalitySelector, [2]]                                       # 2 (TIR)
 
-  # --- Dual-Stream Stems ---
   - [1, StemBlock, [16, 16, True]]                                    # 3 (RGB_Stem)
   - [2, StemBlock, [16, 16, True]]                                    # 4 (TIR_Stem)
 
-  # --- Stage 1 (P2 / stride 4) ---
   - [3, HG_Stage, [16, 32, 1, 3, False, False, 3, True, 'se']]        # 5 (RGB_P2)
   - [4, HG_Stage, [16, 32, 1, 3, False, False, 3, True, 'se']]        # 6 (TIR_P2)
 
-  # --- Early Fusion: Modality Complementary Differential Feature Fusion (MCDF) ---
   - [[5, 6], MCDF, [32]]                                              # 7 (Fused_P2)
 
-  # --- Stage 2 (P3 / stride 8) ---
   - [5, HG_Stage, [32, 128, 1, 3, True, False, 3, True, 'se']]        # 8 (RGB_P3)
   - [6, HG_Stage, [32, 128, 1, 3, True, False, 3, True, 'se']]        # 9 (TIR_P3)
-  
-  # --- Progressive Link ---
+ 
   - [7, SCDown, [32, 3, 2]]                                           # 10 
 
-  # --- Mid Fusion: Modality Complementary Differential Feature Fusion (MCDF) ---
   - [[8, 9], MCDF, [128]]                                             # 11 
   - [[11, 10], Concat, []]                                            # 12 
   - [-1, ConvNormLayer_fuse, [128, 1, 1]]                             # 13 (Fused_P3)
 
-  # --- Stage 3 & 4 (P4, P5 Single-Stream Backbone) ---
   - [-1, HG_Stage, [32, 256, 2, 3, True, True, 5, True, 'se']]        # 14 (P4)
   - [-1, HG_Stage, [64, 512, 1, 3, True, True, 5, True, 'se']]        # 15 (P5)
 
 encoder:
-  # --- Projection Layers ---
   - [7, ConvNormLayer_fuse, [64, 1, 1]]                               # 16 
   - [14, ConvNormLayer_fuse, [128, 1, 1]]                             # 17 
   - [15, ConvNormLayer_fuse, [128, 1, 1]]                             # 18 
 
-  # --- Top-Down & Bottom-Up Paths with Polymorphic ConvBlock (PolyBlock) ---
   - [-1, TransformerEncoderBlock, [8, 512, 0.1, "relu", 10000, False]]# 19 
   - [-1, ConvNormLayer_fuse, [128, 1, 1]]                             # 20
   - [-1, nn.Upsample, [None, 2, "nearest"]]                           # 21
@@ -153,5 +142,4 @@ encoder:
   - [-1, PolyBlock, [256]]                                            # 33 (PolyBlock on P5)
 
 decoder:
-  # --- Spatial Density Prior Guided Query Selection (DGQS) ---
   - [[30, 33], DGQS_Transformer, {"feat_strides":[16, 32], "hidden_dim": 128, "num_levels": 2, "num_layers": 3, "num_points": [6, 6], "dim_feedforward": 512, "using_dynamic_query": false, "using_densitymap_iter": 10000}]
