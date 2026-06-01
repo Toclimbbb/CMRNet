@@ -83,8 +83,6 @@ no_aug_epoch: 12
 lr_gamma: 1.0
 
 # ==================== CMRNet Architecture ====================
-ch: 6  # RGB-T 6-channel input
-
 backbone:
   - [-1, IdentityInput, []]                                           # 0
   - [-1, ModalitySelector, [1]]                                       # 1 (RGB)
