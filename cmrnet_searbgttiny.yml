@@ -82,55 +82,58 @@ flat_epoch: 78
 no_aug_epoch: 12
 lr_gamma: 1.0
 
-# ==================== CMRNet Architecture ====================
+# ==================== CMRNet Architecture (Redacted for Blind Review) ====================
+# Note: Exact channel dimensions, routing indices, and node hyperparameters 
+# are masked with [*args] and [src] to protect intellectual property prior to publication.
+
 backbone:
-  - [-1, IdentityInput, []]                                           # 0
-  - [-1, ModalitySelector, [1]]                                       # 1 (RGB)
-  - [-2, ModalitySelector, [2]]                                       # 2 (TIR)
+  - [prev, IdentityInput, []]                                         
+  - [src, ModalitySelector, [1]]                                      
+  - [src, ModalitySelector, [2]]                                      
 
-  - [1, StemBlock, [16, 16, True]]                                    # 3 (RGB_Stem)
-  - [2, StemBlock, [16, 16, True]]                                    # 4 (TIR_Stem)
+  - [src, StemBlock, [*args]]                                         
+  - [src, StemBlock, [*args]]                                         
 
-  - [3, HG_Stage, [16, 32, 1, 3, False, False, 3, True, 'se']]        # 5 (RGB_P2)
-  - [4, HG_Stage, [16, 32, 1, 3, False, False, 3, True, 'se']]        # 6 (TIR_P2)
+  - [src, HG_Stage, [*args]]                                          
+  - [src, HG_Stage, [*args]]                                          
 
-  - [[5, 6], MCDF, [32]]                                              # 7 (Fused_P2)
+  - [src, MCDF, [*args]]                                              # Fused_P2
 
-  - [5, HG_Stage, [32, 128, 1, 3, True, False, 3, True, 'se']]        # 8 (RGB_P3)
-  - [6, HG_Stage, [32, 128, 1, 3, True, False, 3, True, 'se']]        # 9 (TIR_P3)
- 
-  - [7, SCDown, [32, 3, 2]]                                           # 10 
+  - [src, HG_Stage, [*args]]                                          
+  - [src, HG_Stage, [*args]]                                          
+  
+  - [src, SCDown, [*args]]                                            
 
-  - [[8, 9], MCDF, [128]]                                             # 11 
-  - [[11, 10], Concat, []]                                            # 12 
-  - [-1, ConvNormLayer_fuse, [128, 1, 1]]                             # 13 (Fused_P3)
+  - [src, MCDF, [*args]]                                              # Fused_P3
+  - [src, Concat, []]                                                 
+  - [src, ConvNormLayer_fuse, [*args]]                                
 
-  - [-1, HG_Stage, [32, 256, 2, 3, True, True, 5, True, 'se']]        # 14 (P4)
-  - [-1, HG_Stage, [64, 512, 1, 3, True, True, 5, True, 'se']]        # 15 (P5)
+  - [src, HG_Stage, [*args]]                                          
+  - [src, HG_Stage, [*args]]                                          
 
 encoder:
-  - [7, ConvNormLayer_fuse, [64, 1, 1]]                               # 16 
-  - [14, ConvNormLayer_fuse, [128, 1, 1]]                             # 17 
-  - [15, ConvNormLayer_fuse, [128, 1, 1]]                             # 18 
+  - [src, ConvNormLayer_fuse, [*args]]                                
+  - [src, ConvNormLayer_fuse, [*args]]                                
+  - [src, ConvNormLayer_fuse, [*args]]                                
 
-  - [-1, TransformerEncoderBlock, [8, 512, 0.1, "relu", 10000, False]]# 19 
-  - [-1, ConvNormLayer_fuse, [128, 1, 1]]                             # 20
-  - [-1, nn.Upsample, [None, 2, "nearest"]]                           # 21
-  - [[-1, 17], Concat, []]                                            # 22 
-  - [-1, RepNCSPELAN4, [128, 256, 21, 2, False, 'silu']]              # 23 
+  - [src, TransformerEncoderBlock, [*args]]                           
+  - [src, ConvNormLayer_fuse, [*args]]                                
+  - [src, nn.Upsample, [*args]]                                       
+  - [src, Concat, []]                                                 
+  - [src, RepNCSPELAN4, [*args]]                                      
 
-  - [-1, ConvNormLayer_fuse, [64, 1, 1]]                              # 24
-  - [-1, nn.Upsample, [None, 4, "nearest"]]                           # 25 
-  - [[-1, 16], Concat, []]                                            # 26 
-  - [-1, RepNCSPELAN4, [64, 128, 21, 2, False, 'silu']]               # 27 
+  - [src, ConvNormLayer_fuse, [*args]]                                
+  - [src, nn.Upsample, [*args]]                                       
+  - [src, Concat, []]                                                 
+  - [src, RepNCSPELAN4, [*args]]                                      
 
-  - [-1, SCDown, [128, 3, 4, 'silu']]                                 # 28 
-  - [[-1, 23], Concat, []]                                            # 29 
-  - [-1, PolyBlock, [256]]                                            # 30 (PolyBlock on P4)
+  - [src, SCDown, [*args]]                                            
+  - [src, Concat, []]                                                 
+  - [src, PolyBlock, [*args]]                                         # PolyBlock on P4
 
-  - [-1, SCDown, [128, 3, 2, 'silu']]                                 # 31 
-  - [[-1, 20], Concat, []]                                            # 32 
-  - [-1, PolyBlock, [256]]                                            # 33 (PolyBlock on P5)
+  - [src, SCDown, [*args]]                                            
+  - [src, Concat, []]                                                 
+  - [src, PolyBlock, [*args]]                                         # PolyBlock on P5
 
 decoder:
-  - [[30, 33], DGQS_Transformer, {"feat_strides":[16, 32], "hidden_dim": 128, "num_levels": 2, "num_layers": 3, "num_points": [6, 6], "dim_feedforward": 512, "using_dynamic_query": false, "using_densitymap_iter": 10000}]
+  - [src, DGQS_Transformer, {"using_densitymap_iter": 10000, "hyperparams": "**kwargs_withheld"}]
