@@ -5,18 +5,18 @@ Welcome to the official repository for **CMRNet**.
 ## 📢 Update
 **[Under Review]** The manuscript is currently undergoing the peer-review process. 
 
-To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny), the **Training Hyperparameter Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies**. 
+To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny), the **Complete Model Architecture & Training Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies**. 
 
-To protect intellectual property and academic novelty prior to formal publication, the core source code, network structural topology, and the complete dataset are temporarily withheld. **We commit to making the complete training pipeline, inference code, and full dataset publicly available right here immediately upon the acceptance of the paper.**
+To protect intellectual property and academic novelty prior to formal publication, the core Python source code and the complete dataset are temporarily withheld. **We commit to making the full training pipeline, inference code, and the complete dataset publicly available right here immediately upon the acceptance of the paper.**
 
 ---
 
 ## 📅 Release Roadmap
 - [x] Release abstract and core performance metrics.
 - [x] Release a sample subset of the **SeaRGBT-Tiny** dataset for format reference.
-- [x] Release the environment dependencies and core training configurations.
+- [x] Release the environment dependencies and complete network architecture configurations.
 - [ ] Release the full **SeaRGBT-Tiny** dataset (images and bounding box annotations).
-- [ ] Release the complete training and evaluation pipeline.
+- [ ] Release the complete Python source code for training and evaluation.
 
 ---
 
@@ -29,10 +29,10 @@ Experiments on SeaRGBT-Tiny, MSRS, FLIR, and LLVIP show that our method achieves
 
 ---
 
-## 💻 Training Proof & Configurations
-To ensure transparency during the review process, we provide the `cmrnet_searbgttiny.yml` file, which details our core hyperparameter configurations, data augmentation strategies (e.g., Mosaic, ModalStack), and the structural logic of CMRNet. 
+## 💻 Architecture Proof & Configurations
+To ensure absolute transparency during the review process, we provide the `cmrnet_searbgttiny.yml` file. This file explicitly details the **complete structural logic of the CMRNet framework** (including the integration of MCDF, PolyBlock, and DGQS), along with our **core training pipeline** (hyperparameters, optimizers, and dual-modality data augmentation strategies like Mosaic and ModalStack).
 
-Below is a snapshot of our training terminal, which verifies the model's lightweight footprint (**3.60M Parameters**) and structural execution.
+Below is a snapshot of our training terminal, which verifies the model's lightweight footprint (**3.60M Parameters**) and successful structural execution.
 
 <details open>
 <summary>Click to view the training terminal log</summary>
