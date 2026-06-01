@@ -5,9 +5,9 @@ Welcome to the official repository for **CMRNet**.
 ## 📢 Update
 **[Under Review]** The manuscript is currently undergoing the peer-review process. 
 
-To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny), the comprehensive **Training Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies**. 
+To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny), the **Training Hyperparameter Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies**. 
 
-To protect intellectual property and academic novelty prior to formal publication, the core source code and the complete dataset are temporarily withheld. **We commit to making the complete training pipeline, inference code, and full dataset publicly available right here immediately upon the acceptance of the paper.**
+To protect intellectual property and academic novelty prior to formal publication, the core source code, network structural topology, and the complete dataset are temporarily withheld. **We commit to making the complete training pipeline, inference code, and full dataset publicly available right here immediately upon the acceptance of the paper.**
 
 ---
 
