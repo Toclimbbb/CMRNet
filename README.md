@@ -5,7 +5,7 @@ Welcome to the official repository for **CMRNet**.
 ## 📢 Update
 **[Under Review]** The manuscript is currently undergoing the peer-review process. 
 
-To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny), the **Complete Model Architecture & Training Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies**. 
+To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny), the **Complete Model Architecture & Training Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies (`requirements.txt`)**. 
 
 To protect intellectual property and academic novelty prior to formal publication, the core Python source code and the complete dataset are temporarily withheld. **We commit to making the full training pipeline, inference code, and the complete dataset publicly available right here immediately upon the acceptance of the paper.**
 
