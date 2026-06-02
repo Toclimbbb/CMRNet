@@ -7,7 +7,7 @@ Welcome to the official repository for **CMRNet**.
 
 To support the review process and demonstrate our commitment to open research, we have released a **Sample Dataset** (a representative subset of SeaRGBT-Tiny images along with the test set labels), the **Complete Model Architecture & Training Configuration (`cmrnet_searbgttiny.yml`)**, and essential **environment dependencies (`requirements.txt`)**. 
 
-To protect intellectual property and academic novelty prior to formal publication, the core Python source code and the complete dataset are temporarily withheld. **We commit to making the full training pipeline, inference code, and the complete dataset publicly available right here immediately upon the acceptance of the paper.**
+To protect intellectual property and academic novelty prior to formal publication, the core PyTorch source code and the complete dataset are temporarily withheld. **We commit to making the full training pipeline, inference code, and the complete dataset publicly available right here immediately upon the acceptance of the paper.**
 
 ---
 
@@ -16,7 +16,7 @@ To protect intellectual property and academic novelty prior to formal publicatio
 - [x] Release a sample subset of the **SeaRGBT-Tiny** dataset for format reference.
 - [x] Release the environment dependencies and complete network architecture configurations.
 - [ ] Release the full **SeaRGBT-Tiny** dataset (images and bounding box annotations).
-- [ ] Release the complete Python source code for training and evaluation.
+- [ ] Release the complete PyTorch source code for training and evaluation.
 
 ---
 
