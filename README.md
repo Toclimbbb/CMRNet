@@ -48,7 +48,7 @@ Below is a snapshot of our training terminal, which verifies the model's lightwe
 <details open>
 <summary>Click to view the performance comparison</summary>
 
-![Accuracy-efficiency trade-off](tradeoff.png)
+![Accuracy-efficiency trade-off](tradeoff.jpg)
 *Fig. 2. Accuracy-efficiency trade-off comparison between CMRNet and other state-of-the-art detectors.*
 </details>
 
