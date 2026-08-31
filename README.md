@@ -18,6 +18,15 @@ As promised during the review process, we have now fully open-sourced this proje
 
 ---
 
+## 🗂️ Dataset Download
+The **SeaRGBT-Tiny** dataset is now publicly available for academic research. You can download the complete dataset via the link below:
+
+- **Baidu Netdisk**: [SeaRGBT-Tiny dataset](https://pan.baidu.com/s/1m6B3j7BwwI99Z6sayAw7qA)
+
+*(Note: If a sharing password/extraction code is required, please contact the authors or check the updated release notes.)*
+
+---
+
 ## 📖 Abstract
 The complementarity of visible (RGB) and thermal infrared (TIR) features is crucial in maritime monitoring and perception, especially in coastal environments characterized by complex lighting and weather factors. However, mainstream existing multispectral feature fusion methods rely on static fusion strategies, which cannot adapt to rapid changes in modality reliability, causing cross-modal feature contamination and redundant computation over large backgrounds. 
 
